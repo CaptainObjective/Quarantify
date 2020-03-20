@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import firebase from './firebase/firebase';
 import 'semantic-ui-less/semantic.less';
 
 import App from './App';
