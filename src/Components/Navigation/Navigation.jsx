@@ -4,9 +4,8 @@ import { Sidebar, Menu, Icon, Segment, Container } from 'semantic-ui-react';
 import Drawer from '../Drawer';
 import { styles } from './styles';
 
-const Navigation = ({ children }) => {
+const Navigation = ({ children, style }) => {
   const [visible, setVisible] = useState(false);
-
   return (
     <Sidebar.Pushable as={Segment}>
       <Sidebar
@@ -21,7 +20,7 @@ const Navigation = ({ children }) => {
       >
         <Drawer />
       </Sidebar>
-      <Sidebar.Pusher style={{ minHeight: '100vh' }}>
+      <Sidebar.Pusher style={{ minHeight: '100vh', ...style }}>
         <Menu fixed="top" style={styles.appbar}>
           <Menu.Item onClick={() => setVisible(!visible)}>
             <Icon name="bars" />
@@ -35,7 +34,7 @@ const Navigation = ({ children }) => {
             </Menu.Item>
           </Menu.Menu>
         </Menu>
-        <Container>{children}</Container>
+        <Container style={{ display: 'flex', justifyContent: 'center' }}>{children}</Container>
       </Sidebar.Pusher>
     </Sidebar.Pushable>
   );
