@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sidebar, Menu, Icon, Segment, Container, Sticky } from 'semantic-ui-react';
+import { Sidebar, Menu, Icon, Segment, Container } from 'semantic-ui-react';
 
 import Drawer from '../Drawer';
 import { styles } from './styles';
@@ -23,8 +23,8 @@ const Navigation = ({ children }) => {
       </Sidebar>
       <Sidebar.Pusher style={{ minHeight: '100vh' }}>
         <Menu fixed="top" style={styles.appbar}>
-          <Menu.Item>
-            <Icon name="bars" onClick={() => setVisible(!visible)} />
+          <Menu.Item onClick={() => setVisible(!visible)}>
+            <Icon name="bars" />
           </Menu.Item>
           <Menu.Menu position="right">
             <Menu.Item>
