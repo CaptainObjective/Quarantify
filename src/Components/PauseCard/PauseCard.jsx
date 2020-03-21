@@ -4,7 +4,7 @@ import {styles} from "./styles";
 
 import './pauseCard.css'
 
-const PauseCard = () => (
+const PauseCard = ({setPauseModalOpen}) => (
     <Card style={styles.card}>
         <div style={styles.title}>
             I need to go!
@@ -12,6 +12,7 @@ const PauseCard = () => (
         <Button
             style={styles.button}
           circular
+            onClick={() => setPauseModalOpen(true)}
         >
             Pause
         </Button>
