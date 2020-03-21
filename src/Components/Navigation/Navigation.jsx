@@ -5,7 +5,7 @@ import NavIcon from './NavIcon';
 
 const Navigation = () => {
   return (
-    <Menu fixed="bottom" widths="5">
+    <Menu fixed="bottom" widths="5" id="navigation">
       <NavIcon size="large" name="gamepad" to="/leaderboard" />
       <NavIcon size="large" name="star" to="/leaderboard" />
       <NavIcon size="big" name="home" exact to="/" />

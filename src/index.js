@@ -5,6 +5,7 @@ import 'semantic-ui-less/semantic.less';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+console.warn = null;
 
 ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.register();
