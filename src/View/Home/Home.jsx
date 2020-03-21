@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthorization } from '../../hooks/useAuthorization';
 import { styles } from './styles';
 import { Card } from 'semantic-ui-react';
@@ -13,12 +13,20 @@ import MyLoader from '../../Components/MyLoader/MyLoader';
 
 const Home = () => {
   const user = useAuthorization();
-  const [isDailyModalOpen, setIsDailyModalOpen] = useState(true);
-  const [isPauseModalOpen, setPauseModalOpen] = useState(false);
   const currentDate = new Date();
+
+  useEffect(() => {
+    const lastModalDate = user?.lastModalDate?.toDate();
+    const lastModalDisplayedDifference = Math.abs(currentDate - lastModalDate);
+    const shouldModalBeDisplayed = Math.round(lastModalDisplayedDifference / (1000 * 3600 * 24)) >= 1;
+    setIsDailyModalOpen(shouldModalBeDisplayed);
+  }, [user]);
+
+  const [isDailyModalOpen, setIsDailyModalOpen] = useState(false);
+  const [isPauseModalOpen, setPauseModalOpen] = useState(false);
   const startDate = user && user.startDate ? user.startDate.toDate() : new Date();
   const datesDifference = Math.abs(currentDate - startDate);
-  const numberOfDays = Math.round(datesDifference / (1000 * 3600 * 24));
+  const numberOfDays = Math.round(datesDifference / (1000 * 3600 * 24)) + 1;
 
   if (!user) {
     return <MyLoader />;
@@ -45,7 +53,7 @@ const Home = () => {
       <DailyModal
         isOpen={isDailyModalOpen}
         closeModal={() => setIsDailyModalOpen(false)}
-        username={user?.username}
+        user={user}
         numberOfDays={numberOfDays}
       />
       <PauseModal isOpen={isPauseModalOpen} closeModal={() => setPauseModalOpen(false)} />
