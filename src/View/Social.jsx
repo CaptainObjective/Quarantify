@@ -1,7 +1,12 @@
 import React from 'react';
+import PostList from '../Components/PostList';
 
 const Social = () => {
-  return <div>Social</div>;
+  return (
+    <>
+      <PostList />
+    </>
+  );
 };
 
 export default Social;

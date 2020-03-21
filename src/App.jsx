@@ -8,19 +8,21 @@ import Social from './View/Social';
 import LeaderBoard from './View/LeaderBoard';
 
 import PrivateRoute from './Components/PrivateRoute';
-import Navigation from './Components/Navigation/Navigation';
+import AppWrapper from './Components/AppWrapper';
+// import Navigation from './Components/Navigation';
+import { styles } from './global.styles';
 
 const App = () => {
   return (
     <Router>
       <Switch>
         <Route path="/login" component={Login} />
-        <Navigation>
+        <AppWrapper style={styles.main}>
           <PrivateRoute path="/challenge" component={Challenge} />
           <PrivateRoute path="/social" component={Social} />
           <PrivateRoute path="/leaderboard" component={LeaderBoard} />
           <PrivateRoute path="/" exact component={Home} />
-        </Navigation>
+        </AppWrapper>
       </Switch>
     </Router>
   );
