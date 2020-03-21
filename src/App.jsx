@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from './View/Home/Home';
 import Login from './View/Login';
+import Register from './View/Register';
 import Challenge from './View/Challenge';
 import Social from './View/Social';
 import Activity from './View/Activity';
@@ -17,6 +18,7 @@ const App = () => {
     <Router>
       <Switch>
         <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
         <PrivateRoute path="/start" component={StartingPage} />
         <AppWrapper>
           <PrivateRoute path="/challenge" component={Challenge} />

@@ -10,8 +10,6 @@ const firestore = firebase.firestore();
 // auth.signInWithEmailAndPassword('marcin@marcin.com', '123456');
 auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
 
-auth.signInWithEmailAndPassword('adam@adam.com', 'adamadam')
-
 export default {
   auth,
   firestore
