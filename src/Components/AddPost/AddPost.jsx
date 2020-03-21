@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import { Button, Modal, Form } from 'semantic-ui-react';
 import { styles } from './styles';
 import { firestore, storage } from 'firebase';
+import { createPost } from '../../db/createPost';
+import { uploadImage } from '../../db/uploadImage';
 
 const AddPost = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,21 +12,8 @@ const AddPost = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     const photo = fileRef.current.files[0];
-    const photoRef = storage().ref('PostsPhotos/' + photo.name);
-    await photoRef.put(photo);
-    const url = await photoRef.getDownloadURL();
-
-    const userRef = firestore()
-      .collection('Users')
-      .doc('f9eYzQ0NZmh0OYwd62hG');
-    firestore()
-      .collection('Posts')
-      .add({
-        text,
-        image: url,
-        author: userRef,
-        timestamp: firestore.Timestamp.now()
-      });
+    const url = await uploadImage(photo, 'PostsPhotos');
+    createPost('f9eYzQ0NZmh0OYwd62hG', text, url); //zmienić na usera
     setIsOpen(false);
   };
   return (
