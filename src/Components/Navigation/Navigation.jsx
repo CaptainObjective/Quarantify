@@ -1,42 +1,17 @@
-import React, { useState } from 'react';
-import { Sidebar, Menu, Icon, Segment, Container } from 'semantic-ui-react';
+import React from 'react';
 
-import Drawer from '../Drawer';
-import { styles } from './styles';
+import { Menu } from 'semantic-ui-react';
+import NavIcon from './NavIcon';
 
-const Navigation = ({ children, style }) => {
-  const [visible, setVisible] = useState(false);
+const Navigation = () => {
   return (
-    <Sidebar.Pushable as={Segment}>
-      <Sidebar
-        as={Menu}
-        animation="overlay"
-        icon="labeled"
-        inverted
-        onHide={() => setVisible(false)}
-        vertical
-        visible={visible}
-        width="thin"
-      >
-        <Drawer />
-      </Sidebar>
-      <Sidebar.Pusher style={{ minHeight: '100vh', ...style }}>
-        <Menu fixed="top" style={styles.appbar}>
-          <Menu.Item onClick={() => setVisible(!visible)}>
-            <Icon name="bars" />
-          </Menu.Item>
-          <Menu.Menu position="right">
-            <Menu.Item>
-              <Icon name="cog" />
-            </Menu.Item>
-            <Menu.Item>
-              <Icon name="user" />
-            </Menu.Item>
-          </Menu.Menu>
-        </Menu>
-        <Container style={{ display: 'flex', justifyContent: 'center' }}>{children}</Container>
-      </Sidebar.Pusher>
-    </Sidebar.Pushable>
+    <Menu fixed="bottom" widths="5">
+      <NavIcon size="large" name="gamepad" to="/leaderboard" />
+      <NavIcon size="large" name="star" to="/leaderboard" />
+      <NavIcon size="big" name="home" exact to="/" />
+      <NavIcon size="large" name="users" to="/social" />
+      <NavIcon size="large" name="camera" to="/challenge" />
+    </Menu>
   );
 };
 
