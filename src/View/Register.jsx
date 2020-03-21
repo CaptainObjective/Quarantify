@@ -57,6 +57,7 @@ const Login = () => {
                     userId,
                     username: name,
                     email,
+                    lastModalDate: new Date('2000-01-01')
                 })
             }).catch(error => setError(error.code))
         }

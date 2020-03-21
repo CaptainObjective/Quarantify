@@ -11,7 +11,7 @@ const {pathname} = useLocation()
   // console.log({location})
   useEffect(() => {
     const checkAuthorization = async currentUser => {
-      setUser(currentUser);
+      // setUser(currentUser);
       if (pathname.includes('register')) {
         return
       }

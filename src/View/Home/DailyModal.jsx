@@ -1,8 +1,15 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import firebase from 'firebase'
 import {Modal, Button} from "semantic-ui-react";
 import {styles} from "./styles";
 
-const DailyModal = ({isOpen, closeModal, username, numberOfDays}) => {
+const DailyModal = ({isOpen, closeModal, user, numberOfDays}) => {
+    useEffect(() => {
+        firebase.firestore().collection('Users').doc(user.id).update({
+            lastModalDate: new Date()
+        })
+    }, [])
+
     const getNumberOfDays = () => {
         switch (numberOfDays) {
             case 1:
@@ -25,7 +32,7 @@ const DailyModal = ({isOpen, closeModal, username, numberOfDays}) => {
             <div style={styles.modalContainer}>
                 <img src="/medal-2.png" style={styles.img}/>
                 <div style={styles.title}>
-                    {`${username} it\'s your ${getNumberOfDays()} day`}
+                    {`${user?.username} it\'s your ${getNumberOfDays()} day`}
                 </div>
                 <div style={styles.subtitle}>
                     Good job!
