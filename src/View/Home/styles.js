@@ -72,13 +72,6 @@ export const styles = {
     pointsNumber: {
         margin: '10px'
     },
-    pauseSetTime: {
-        background: 'white',
-        border: '2px solid #F65C51',
-        color: '#F65C51',
-        width: '80%',
-        margin: '10px'
-    },
     pauseButton: {
         width: '80%',
         background: "#F65C51",
