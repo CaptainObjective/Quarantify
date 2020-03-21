@@ -5,6 +5,8 @@ import TitleHeader from '../../Components/TitleHeader/TitleHeader'
 import MainText from "../../Components/MainText/MainText";
 import {styles} from "./styles";
 import MyMap from "./Map";
+import {useAuthorization} from "../../hooks/useAuthorization";
+import * as firebase from "firebase";
 
 const texts = {
     1 : {
@@ -31,6 +33,11 @@ const StartingPage = () => {
         lng: null,
     })
     const history = useHistory()
+    const user = useAuthorization()
+
+    if (user && user.localization) {
+        history.push('/')
+    }
 
     const renderMainContent = () => {
         switch (step) {
@@ -77,10 +84,14 @@ const StartingPage = () => {
                                 lat: coords.latitude,
                                 lng: coords.longitude,
                             });
-                            // save to db
+
                             if (step < 3) {
                                 setStep(step + 1)
                             } else {
+                                firebase.firestore().collection('Users').doc(user.id).update({
+                                    localization: new firebase.firestore.GeoPoint(coords.latitude, coords.longitude)
+                                })
+
                                 history.push('/')
                             }
                         })

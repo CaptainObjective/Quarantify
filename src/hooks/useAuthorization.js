@@ -14,10 +14,14 @@ export const useAuthorization = () => {
             }
 
             const snapshot = await firebase.firestore().collection('Users').where('userId', '==', currentUser.uid).get()
+
             if (snapshot.empty) return
             const userData = snapshot.docs[0].data()
 
-            setUser(userData);
+            setUser({
+                id: snapshot.docs[0].id,
+                ...userData
+            });
 
             if (!userData.localization) {
                 history.push('/start')
