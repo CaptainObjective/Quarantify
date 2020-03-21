@@ -9,15 +9,13 @@ import LeaderBoard from './View/LeaderBoard';
 
 import PrivateRoute from './Components/PrivateRoute';
 import AppWrapper from './Components/AppWrapper';
-// import Navigation from './Components/Navigation';
-import { styles } from './global.styles';
 
 const App = () => {
   return (
     <Router>
       <Switch>
         <Route path="/login" component={Login} />
-        <AppWrapper style={styles.main}>
+        <AppWrapper>
           <PrivateRoute path="/challenge" component={Challenge} />
           <PrivateRoute path="/social" component={Social} />
           <PrivateRoute path="/leaderboard" component={LeaderBoard} />

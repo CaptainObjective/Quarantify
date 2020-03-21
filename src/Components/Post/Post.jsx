@@ -1,11 +1,10 @@
 import React from 'react';
 import { Card, Image, Icon } from 'semantic-ui-react';
 
-import sampleProfile from '../../assets/images/Profile picture.png';
+import profilePlaceholder from '../../assets/images/Profile picture.png';
 import { styles } from './styles';
 
-const Post = ({ text, score, author }) => {
-  console.log(author);
+const Post = ({ text, image, author }) => {
   return (
     <Card>
       <Card.Content>
@@ -19,15 +18,19 @@ const Post = ({ text, score, author }) => {
         </Card.Header>
         <Card.Description>{text}</Card.Description>
       </Card.Content>
+      {image && <Image src={profilePlaceholder} wrapped />}
     </Card>
   );
 };
 
 Post.defaultProps = {
-  username: 'Steve Sanders',
   text: 'Placeholder text',
-  avatar: sampleProfile,
-  score: 666
+  image: null,
+  author: {
+    username: 'Unknown',
+    score: '000',
+    avatar: profilePlaceholder
+  }
 };
 
 export default Post;

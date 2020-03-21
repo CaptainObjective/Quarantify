@@ -10,9 +10,19 @@ const PostList = () => {
   console.log(value);
   return (
     <Container>
-      {value.map((post, i) => {
-        return <Post {...post} key={i} />;
-      })}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+          flexDirection: 'column'
+        }}
+      >
+        {value.map((post, i) => {
+          return <Post {...post} key={i} />;
+        })}
+      </div>
     </Container>
   );
 };
