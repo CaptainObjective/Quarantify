@@ -8,9 +8,9 @@ import MyMap from "./Map";
 import {useAuthorization} from "../../hooks/useAuthorization";
 import * as firebase from "firebase";
 
-const texts = {
+const getTexts = user => ({
     1 : {
-        title: 'Hello, Lili!',
+        title: `Hello, ${user ? user.username : ''}!`,
         content: 'The app requires an access to your location!',
         button: 'Turn on your GPS',
     },
@@ -24,7 +24,7 @@ const texts = {
         content: 'You are ready to join the community and fight the outbreak!',
         button: 'Let\s go!',
     }
-}
+})
 
 const StartingPage = () => {
     const [step, setStep] = useState(1)
@@ -72,8 +72,8 @@ const StartingPage = () => {
             <div style={styles.container}>
             <TitleHeader />
             <MainText
-                title={texts[step].title}
-                content={texts[step].content}
+                title={getTexts(user)[step].title}
+                content={getTexts(user)[step].content}
             />
                 {renderMainContent()}
             <Button
@@ -98,7 +98,7 @@ const StartingPage = () => {
                     }
                 }}
             >
-                {texts[step].button}
+                {getTexts(user)[step].button}
             </Button>
                 {renderBottomText()}
         </div>

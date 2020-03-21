@@ -1,0 +1,22 @@
+::placeholder {
+    color: white !important;
+    opacity: 1;
+}
+
+.ui.huge.left.icon.input {
+    color: white !important;
+    opacity: 100 !important;
+}
+
+.user.icon {
+    opacity: 100 !important;
+}
+
+.lock.icon {
+    opacity: 100 !important;
+}
+
+input {
+    border: 0 !important;
+    border-bottom: 3px white solid !important;
+}

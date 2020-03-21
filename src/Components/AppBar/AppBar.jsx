@@ -23,7 +23,7 @@ const AppBar = () => {
         <Segment style={styles.segment}>
           <Header size="small">
             <Icon name="star" color="yellow" size="small" />
-            <Header.Content>{user?.score}</Header.Content>
+            <Header.Content>{user?.score || 0}</Header.Content>
           </Header>
         </Segment>
       </span>
