@@ -11,6 +11,7 @@ export const createChallenge = async (author, email) => {
       .add({
         approved: false,
         author: userRef,
+        markedForReview: false,
         recipientID: email,
         photo: '',
         startedOn: firestore.Timestamp.now()
