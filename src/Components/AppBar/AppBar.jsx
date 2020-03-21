@@ -8,11 +8,15 @@ import {useAuthorization} from "../../hooks/useAuthorization";
 const AppBar = () => {
     const user = useAuthorization()
 
+    if (!user) {
+        return <span />
+    }
+
   return (
     <div fixed="top" style={styles.root}>
       <div>
         <Header as="h2">
-          <Image circular src={sampleProfile} /> Lilth Collins
+          <Image circular src={user.avatar || sampleProfile} /> {user.name}
         </Header>
       </div>
       <span position="right">
