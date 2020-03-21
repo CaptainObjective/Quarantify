@@ -1,22 +1,25 @@
 import React from 'react';
 import { Image, Header, Segment, Icon } from 'semantic-ui-react';
 
-import sampleProfile from '../../assets/images/Profile picture.png';
+import placholderAvatar from '../../assets/images/placholderAvatar.png';
 import { styles } from './styles';
+import { useAuthorization } from '../../hooks/useAuthorization';
 
 const AppBar = () => {
+  const user = useAuthorization();
+  console.log(user);
   return (
     <div fixed="top" style={styles.root}>
       <div>
         <Header as="h2">
-          <Image circular src={sampleProfile} /> Lilth Collins
+          <Image circular src={user?.avatar || placholderAvatar} /> {user?.username}
         </Header>
       </div>
       <span position="right">
         <Segment style={styles.segment}>
           <Header size="small">
             <Icon name="star" color="yellow" size="small" />
-            <Header.Content>320</Header.Content>
+            <Header.Content>{user?.score}</Header.Content>
           </Header>
         </Segment>
       </span>

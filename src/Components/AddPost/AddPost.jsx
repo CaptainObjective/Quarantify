@@ -4,16 +4,22 @@ import { Button, Modal, Form } from 'semantic-ui-react';
 import { styles } from './styles';
 import { createPost } from '../../db/createPost';
 import { uploadImage } from '../../db/uploadImage';
+import { useAuthorization } from '../../hooks/useAuthorization';
 
 const AddPost = () => {
   const [isOpen, setIsOpen] = useState(false);
   const fileRef = useRef();
+  const user = useAuthorization();
   const [text, setText] = useState('');
   const handleSubmit = async e => {
     e.preventDefault();
     const photo = fileRef.current.files[0];
-    const url = await uploadImage(photo, 'PostsPhotos');
-    createPost('f9eYzQ0NZmh0OYwd62hG', text, url); //zmienić na usera
+    if (photo) {
+      const url = await uploadImage(photo, 'PostsPhotos');
+      createPost(user.id, text, url);
+    } else {
+      createPost(user.id, text);
+    }
     setIsOpen(false);
   };
   return (

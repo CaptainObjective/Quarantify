@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Image, Icon } from 'semantic-ui-react';
 
-import profilePlaceholder from '../../assets/images/Profile picture.png';
+import placholderAvatar from '../../assets/images/placholderAvatar.png';
 import { styles } from './styles';
 
 const Post = ({ text, image, author }) => {
@@ -9,7 +9,7 @@ const Post = ({ text, image, author }) => {
     <Card>
       <Card.Content>
         <Card.Header style={styles.header}>
-          <Image floated="left" avatar size="large" src={author.avatar} />
+          <Image floated="left" avatar size="large" src={author?.avatar} />
           {author.username}
           <span style={styles.scoreSection}>
             <Icon name="star" color={'yellow'} />
@@ -29,7 +29,7 @@ Post.defaultProps = {
   author: {
     username: 'Unknown',
     score: '000',
-    avatar: profilePlaceholder
+    avatar: placholderAvatar
   }
 };
 
