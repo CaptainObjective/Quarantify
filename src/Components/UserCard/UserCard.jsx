@@ -3,21 +3,33 @@ import { Card, Image, Icon } from 'semantic-ui-react';
 
 // import sampleProfile from '../../assets/images/Profile picture.png';
 import { styles } from './styles';
-import {useAuthorization} from "../../hooks/useAuthorization";
+import { useAuthorization } from '../../hooks/useAuthorization';
+import { createChallenge } from '../../db/createChallenge';
 
-const UserCard = ({ score, username, avatar, place }) => {
-  const user = useAuthorization()
-
+const UserCard = ({ score, username, avatar, place, email }) => {
+  const user = useAuthorization();
   return (
-    <Card style={{
-      width: '100%'
-    }}>
+    <Card
+      style={{
+        width: '100%'
+      }}
+    >
       <Card.Content>
         <Card.Header style={styles.header}>
           {place}
           <Image style={styles.image} avatar size="large" src={avatar} />
           {username}
           <span style={styles.scoreSection}>
+            {username !== user?.username && (
+              <Icon
+                name="exclamation"
+                size="small"
+                color={'red'}
+                circular
+                onClick={() => createChallenge(user, email)}
+              />
+            )}
+            &nbsp;
             <Icon name="star" color={'yellow'} />
             {score}
           </span>
@@ -26,7 +38,7 @@ const UserCard = ({ score, username, avatar, place }) => {
     </Card>
   );
 };
-
+// onClick={}
 UserCard.defaultProps = {
   username: 'Steve Sanders',
   text: 'Placeholder text',
