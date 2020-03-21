@@ -1,18 +1,39 @@
 import React from 'react';
+import { Container, Loader, Dimmer } from 'semantic-ui-react';
+
+import useNestedData from '../../hooks/useNestedData';
 import Post from '../Post';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { firestore } from 'firebase';
+import AddPost from '../AddPost/';
 
 const PostList = () => {
-  const [value, loading, error] = useCollectionData(firestore().collection('Posts'));
-  if (loading) return <p>Loading..</p>;
+  const [value, loading, error] = useNestedData(['Posts', 'author']);
+  if (loading)
+    return (
+      <Dimmer active>
+        <Loader>Loading</Loader>
+      </Dimmer>
+    );
   if (error) return <p>error..</p>;
-  console.log(value);
   return (
     <>
-      {value.map((post, i) => {
-        return <Post {...post} key={i} />;
-      })}
+      <Container>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            flexDirection: 'column'
+          }}
+        >
+          {value
+            .sort((a, b) => b.timestamp.seconds - a.timestamp.seconds)
+            .map((post, i) => {
+              return <Post {...post} key={i} />;
+            })}
+        </div>
+      </Container>
+      <AddPost />
     </>
   );
 };
