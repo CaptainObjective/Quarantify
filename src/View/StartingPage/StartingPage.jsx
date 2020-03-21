@@ -28,7 +28,6 @@ const getTexts = user => ({
 
 const StartingPage = () => {
     const [step, setStep] = useState(1)
-    const [test, setTest] = useState('___')
     const [coords, setCoords] = useState({
         lat: null,
         lng: null,
@@ -96,14 +95,11 @@ const StartingPage = () => {
                                 history.push('/')
                             }
                         })
-                    } else {
-                        setTest('no navigator')
                     }
                 }}
             >
                 {getTexts(user)[step].button}
             </Button>
-                {test}
                 {renderBottomText()}
         </div>
     )
