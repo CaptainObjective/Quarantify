@@ -20,6 +20,7 @@ const AddPost = () => {
     } else {
       createPost(user.id, text);
     }
+    setText('');
     setIsOpen(false);
   };
   return (
