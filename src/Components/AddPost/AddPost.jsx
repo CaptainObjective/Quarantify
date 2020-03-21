@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Button, Modal, Form } from 'semantic-ui-react';
+
 import { styles } from './styles';
-import { firestore, storage } from 'firebase';
 import { createPost } from '../../db/createPost';
 import { uploadImage } from '../../db/uploadImage';
 
