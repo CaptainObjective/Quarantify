@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import Cam from '../Components/Cam';
-import PendingChallenge from '../Components/PendingChallenge/PendingChallenge';
 import { Modal, Form, Image } from 'semantic-ui-react';
 import { createPost } from '../db/createPost';
 import { uploadImage } from '../db/uploadImage';
 import { useAuthorization } from '../hooks/useAuthorization';
 import { urltoFile } from '../Utils';
+import { ChallengeList } from '../Components/ChallengeList/ChallengeList';
+import { completeChallenge } from '../db/completeChallenge';
 
 const Challenge = () => {
   const [state, setState] = useState('challenge'); //'', 'submit'
+  const [selectedId, setSelectedId] = useState(''); //'', 'submit'
+
   const [photo, setPhoto] = useState(null);
   const [checkbox, setCheckBox] = useState(false);
 
   const user = useAuthorization();
 
   const handleChallengeAccept = id => {
+    setSelectedId(id);
     setState('takingPhoto');
   };
 
@@ -29,9 +33,7 @@ const Challenge = () => {
     const file = await urltoFile(photo, Date.now(), 'image/png');
 
     const url = await uploadImage(file, 'Selfies');
-    //Publish Challenge ()
-    console.log(url);
-    console.log(checkbox);
+    completeChallenge(selectedId, url);
     if (checkbox) createPost(user.id, 'I just completed selfie challenge!', url);
     setState('challenge');
   };
@@ -55,7 +57,7 @@ const Challenge = () => {
           </Form>
         </Modal.Content>
       </Modal>
-      <PendingChallenge handleChallengeAccept={handleChallengeAccept} />
+      <ChallengeList handleChallengeAccept={handleChallengeAccept} />
     </>
   );
 };
