@@ -8,6 +8,8 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
+auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
+
 export default {
     auth,
     firestore,

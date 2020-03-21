@@ -1,9 +1,10 @@
 import React from 'react';
-import { isAuthenticated } from '../Utils';
 import { Redirect } from 'react-router-dom';
+import {useAuthorization} from "../hooks/useAuthorization";
 
 const Login = () => {
-  if (isAuthenticated) return <Redirect to="/" />;
+  const user = useAuthorization()
+  if (user) return <Redirect to="/" />;
   return <div>Login</div>;
 };
 
