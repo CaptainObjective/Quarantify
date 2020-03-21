@@ -1,32 +1,36 @@
 import React from 'react';
 import { Card, Image, Icon } from 'semantic-ui-react';
 
-import sampleProfile from '../../assets/images/Profile picture.png';
+import placholderAvatar from '../../assets/images/placholderAvatar.png';
 import { styles } from './styles';
 
-const Post = ({ text, score, username, avatar }) => {
+const Post = ({ text, image, author }) => {
   return (
     <Card>
       <Card.Content>
         <Card.Header style={styles.header}>
-          <Image floated="left" avatar size="large" src={sampleProfile} />
-          {username}
+          <Image floated="left" avatar size="large" src={author?.avatar} />
+          {author.username}
           <span style={styles.scoreSection}>
             <Icon name="star" color={'yellow'} />
-            {score}
+            {author.score}
           </span>
         </Card.Header>
         <Card.Description>{text}</Card.Description>
       </Card.Content>
+      {image && <Image src={image} wrapped />}
     </Card>
   );
 };
 
 Post.defaultProps = {
-  username: 'Steve Sanders',
   text: 'Placeholder text',
-  avatar: sampleProfile,
-  score: 666
+  image: null,
+  author: {
+    username: 'Unknown',
+    score: '000',
+    avatar: placholderAvatar
+  }
 };
 
 export default Post;
