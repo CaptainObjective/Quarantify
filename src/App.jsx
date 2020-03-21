@@ -6,6 +6,7 @@ import Login from './View/Login';
 import Challenge from './View/Challenge';
 import Social from './View/Social';
 import LeaderBoard from './View/LeaderBoard';
+import StartingPage from "./View/StartingPage/StartingPage";
 
 import PrivateRoute from './Components/PrivateRoute';
 import AppWrapper from './Components/AppWrapper';
@@ -17,7 +18,8 @@ const App = () => {
     <Router>
       <Switch>
         <Route path="/login" component={Login} />
-        <AppWrapper style={styles.main}>
+          <PrivateRoute path="/start" component={StartingPage} />
+          <AppWrapper style={styles.main}>
           <PrivateRoute path="/challenge" component={Challenge} />
           <PrivateRoute path="/social" component={Social} />
           <PrivateRoute path="/leaderboard" component={LeaderBoard} />
