@@ -10,16 +10,16 @@ const DaysCounter = () => {
     const numberOfDays = Math.round(datesDifference / (1000 * 3600 * 24));
 
     return (
-        <div style={styles.background}>
             <div style={styles.counter}>
+                <div style={styles.topBorder}>
+                </div>
                 <div style={styles.number}>
                     {numberOfDays}
                 </div>
                 <div style={styles.text}>
-                    DAYS
+                    DAY
                 </div>
             </div>
-        </div>
     )
 }
 

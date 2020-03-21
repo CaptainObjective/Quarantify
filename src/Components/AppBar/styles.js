@@ -7,7 +7,8 @@ export const styles = {
     marginBottom: '1rem',
     display: 'flex',
     justifyContent: 'space-between',
-    padding: '0.5rem'
+    padding: '0.5rem',
+    borderBottom: '1px solid #FEFEFE'
   },
   segment: {
     padding: '0.5em'

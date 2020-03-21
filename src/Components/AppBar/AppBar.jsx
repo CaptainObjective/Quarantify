@@ -19,7 +19,7 @@ const AppBar = () => {
           <Image circular src={user?.avatar || placholderAvatar} /> {user?.username}
         </Header>
       </div>
-      <span position="right">
+      <span position="right" style={{margin: '10px'}}>
         <Segment style={styles.segment}>
           <Header size="small">
             <Icon name="star" color="yellow" size="small" />

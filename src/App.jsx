@@ -5,6 +5,7 @@ import Home from './View/Home/Home';
 import Login from './View/Login';
 import Challenge from './View/Challenge';
 import Social from './View/Social';
+import Activity from './View/Activity';
 import LeaderBoard from './View/LeaderBoard';
 import StartingPage from './View/StartingPage/StartingPage';
 
@@ -21,6 +22,7 @@ const App = () => {
           <PrivateRoute path="/challenge" component={Challenge} />
           <PrivateRoute path="/social" component={Social} />
           <PrivateRoute path="/leaderboard" component={LeaderBoard} />
+          <PrivateRoute path="/activity" component={Activity} />
           <PrivateRoute path="/" exact component={Home} />
         </AppWrapper>
       </Switch>

@@ -12,7 +12,7 @@ export const styles = {
     display: 'flex',
     justifyContent: 'center',
     overflowX: 'hidden',
-    overflowY: 'scroll',
+    overflowY: 'auto',
     marginBottom: '8vh'
   }
 };

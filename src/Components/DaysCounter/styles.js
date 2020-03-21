@@ -1,35 +1,31 @@
 export const styles = {
     counter: {
-        width: '200px',
-        height: '200px',
-        background: '#F7B15C',
-        borderRadius: '50%',
+        width: '66px',
+        height: '77px',
+        background: '#FAFAFA',
+        borderRadius: '10px',
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '20px',
-        flexDirection: 'column',
-        color: 'white',
-        position: 'absolute',
-        left: '10%',
-        top: '2%',
-        boxShadow: '0px 1px 10px rgba(0, 0, 0, 0.2), 0px 4px 5px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14)',
+        boxShadow: '5px 5px 5px 0px rgba(199,199,199,0.66)',
+        borderTop: '10px solid #F65C51'
     },
     number: {
-        fontSize: '86px',
-        lineHeight: '130px',
-        fontWeight: 700,
+        fontSize: '36px',
+        lineHeight: '48px',
+        color: '#54C6BE',
     },
     text: {
-        fontSize: '20px',
-        justifySelf: 'flex-end',
+        color: '#4267B2'
     },
     background: {
-        width: '250px',
-        height: '250px',
-        background: '#54C5BD',
-        borderRadius: '50%',
-        marginTop: '20px',
-        position: 'relative',
+
+    },
+    topBorder: {
+        position: 'absolute',
+        width: '100%',
+        height: '14px',
+        color: '#F65C51',
     }
 }
