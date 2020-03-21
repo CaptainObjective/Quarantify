@@ -17,6 +17,6 @@ export const styles = {
     button: {
             width: '50%',
             background: "#F65C51",
-        color: 'white'
+            color: 'white'
     }
 }

@@ -6,7 +6,7 @@ import Login from './View/Login';
 import Register from './View/Register';
 import Challenge from './View/Challenge';
 import Social from './View/Social';
-import Activity from './View/Activity';
+import Activity from './View/Activity/Activity';
 import LeaderBoard from './View/LeaderBoard';
 import StartingPage from './View/StartingPage/StartingPage';
 

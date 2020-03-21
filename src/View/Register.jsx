@@ -57,7 +57,8 @@ const Login = () => {
                     userId,
                     username: name,
                     email,
-                    lastModalDate: new Date('2000-01-01')
+                    lastModalDate: new Date('2000-01-01'),
+                    activities: [],
                 })
             }).catch(error => setError(error.code))
         }
