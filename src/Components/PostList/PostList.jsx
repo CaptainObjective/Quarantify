@@ -4,15 +4,11 @@ import { Container, Loader, Dimmer } from 'semantic-ui-react';
 import useNestedData from '../../hooks/useNestedData';
 import Post from '../Post';
 import AddPost from '../AddPost/';
+import MyLoader from '../MyLoader/MyLoader';
 
 const PostList = () => {
   const [value, loading, error] = useNestedData(['Posts', 'author']);
-  if (loading)
-    return (
-      <Dimmer active>
-        <Loader>Loading</Loader>
-      </Dimmer>
-    );
+  if (loading) return <MyLoader />;
   if (error) return <p>error..</p>;
   return (
     <>

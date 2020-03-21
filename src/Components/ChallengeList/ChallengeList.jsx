@@ -3,6 +3,7 @@ import PendingChallenge from '../PendingChallenge/PendingChallenge';
 import { Container, Dimmer, Loader } from 'semantic-ui-react';
 import useNestedData from '../../hooks/useNestedData';
 import { useAuthorization } from '../../hooks/useAuthorization';
+import MyLoader from '../MyLoader/MyLoader';
 
 export const ChallengeList = ({ handleChallengeAccept }) => {
   const user = useAuthorization();
@@ -13,12 +14,7 @@ export const ChallengeList = ({ handleChallengeAccept }) => {
       ['recipientID', '==', user?.email || ' ']
     ]
   );
-  if (loading)
-    return (
-      <Dimmer active>
-        <Loader>Loading</Loader>
-      </Dimmer>
-    );
+  if (loading) return <MyLoader />;
   if (error) return <p>error..</p>;
 
   return (

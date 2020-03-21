@@ -4,11 +4,12 @@ import { firestore } from 'firebase';
 import UserCard from '../UserCard';
 import { useAuthorization } from '../../hooks/useAuthorization';
 import { styles } from './styles';
+import MyLoader from '../MyLoader/MyLoader';
 
 const UserList = () => {
   const currentUser = useAuthorization();
   const [value, loading, error] = useCollectionData(firestore().collection('Users'));
-  if (loading) return <p>Loading..</p>;
+  if (loading) return <MyLoader />;
   if (error || !currentUser) return <p>error..</p>;
 
   const sortedValue = value && value.sort((a, b) => b.score - a.score);

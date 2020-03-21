@@ -4,13 +4,14 @@ import { Image, Header, Segment, Icon } from 'semantic-ui-react';
 import placholderAvatar from '../../assets/images/placholderAvatar.png';
 import { styles } from './styles';
 import { useAuthorization } from '../../hooks/useAuthorization';
+import MyLoader from '../MyLoader/MyLoader';
 
 const AppBar = () => {
-    const user = useAuthorization()
+  const user = useAuthorization();
 
-    if (!user) {
-        return <span />
-    }
+  if (!user) {
+    return <MyLoader />;
+  }
 
   return (
     <div fixed="top" style={styles.root}>
@@ -19,7 +20,7 @@ const AppBar = () => {
           <Image circular src={user?.avatar || placholderAvatar} /> {user?.username}
         </Header>
       </div>
-      <span position="right" style={{margin: '10px'}}>
+      <span position="right" style={{ margin: '10px' }}>
         <Segment style={styles.segment}>
           <Header size="small">
             <Icon name="star" color="yellow" size="small" />
