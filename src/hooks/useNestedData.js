@@ -7,12 +7,12 @@ const useNestedData = (fieldNames = []) => {
   const [value, setValue] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const [value1, loading1, error1] = useCollectionData(firestore().collection(fieldNames[0]));
 
   try {
     (async () => {
-      if (!value1 || value) return;
+      if (!value1) return;
+      if (value1.length === value?.length) return;
       const promises = [];
       for (let doc of value1) {
         promises.push(doc[fieldNames[1]].get());

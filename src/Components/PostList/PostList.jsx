@@ -21,9 +21,11 @@ const PostList = () => {
             flexDirection: 'column'
           }}
         >
-          {value.map((post, i) => {
-            return <Post {...post} key={i} />;
-          })}
+          {value
+            .sort((a, b) => b.timestamp.seconds - a.timestamp.seconds)
+            .map((post, i) => {
+              return <Post {...post} key={i} />;
+            })}
         </div>
       </Container>
       <AddPost />

@@ -18,7 +18,7 @@ const Post = ({ text, image, author }) => {
         </Card.Header>
         <Card.Description>{text}</Card.Description>
       </Card.Content>
-      {image && <Image src={profilePlaceholder} wrapped />}
+      {image && <Image src={image} wrapped />}
     </Card>
   );
 };
