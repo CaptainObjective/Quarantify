@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useCollectionData, useCollection } from 'react-firebase-hooks/firestore';
+import React from 'react';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { firestore } from 'firebase';
 import UserCard from '../UserCard';
 import { useAuthorization } from '../../hooks/useAuthorization';
@@ -9,8 +9,8 @@ import MyLoader from '../MyLoader/MyLoader';
 const UserList = () => {
   const currentUser = useAuthorization();
   const [value, loading, error] = useCollectionData(firestore().collection('Users'));
-  if (loading) return <MyLoader />;
-  if (error || !currentUser) return <p>error..</p>;
+  if (loading || !currentUser) return <MyLoader />;
+  if (error) return <p>error..</p>;
 
   const sortedValue = value && value.sort((a, b) => b.score - a.score);
   const currentUserPosition = sortedValue && sortedValue.map(user => user.userId).indexOf(currentUser.userId) + 1;
