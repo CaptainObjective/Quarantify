@@ -10,7 +10,7 @@ export const styles = {
             alignItems: 'center'
         },
     title: {
-            fontSize: '14px',
+        fontSize: '14px',
         lineHeight: '28px',
         margin: '10px'
     },
@@ -18,6 +18,5 @@ export const styles = {
             width: '50%',
             background: "#F65C51",
         color: 'white'
-
     }
 }
