@@ -44,9 +44,14 @@ const Challenge = () => {
           <Image src={photo} />
           <Form onSubmit={handleSubmit}>
             <Form.Checkbox label="Also post on public board" onClick={() => setCheckBox(!checkbox)} />
-            <Form.Button floated="right" color="green" type="submit">
-              Publish
-            </Form.Button>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Form.Button inline color="red" type="reset" onClick={() => setState('challenge')}>
+                Discard
+              </Form.Button>
+              <Form.Button inline color="green" type="submit">
+                Publish
+              </Form.Button>
+            </div>
           </Form>
         </Modal.Content>
       </Modal>
