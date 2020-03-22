@@ -59,7 +59,7 @@ const Login = () => {
                     email,
                     lastModalDate: new Date('2000-01-01'),
                     activities: [],
-                    points: 0,
+                    score: 0,
                 })
             }).catch(error => setError(error.code))
         }
