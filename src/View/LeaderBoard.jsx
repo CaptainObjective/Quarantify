@@ -9,7 +9,7 @@ const LeaderBoard = () => {
   return (
       <div style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <div style={{borderRadius: '5px', marginBottom: '5px', background: '#F7B15C', minHeight: '55px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', color: '#FEFEFE', fontWeight: 600}}>
-              <img src="/crown-1.png" style={{position: 'absolute', left: '40%', top: '9%'}}/>
+              <img src="/crown-1.png" style={{position: 'absolute', left: '40%', top: '9%', zIndex: 10000}}/>
               THE BEST OF THE BEST
           </div>
           <div style={{display: 'flex', width: '100%', justifyContent: 'center', marginBottom: '15px'}}>
