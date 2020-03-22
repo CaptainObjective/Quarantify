@@ -89,7 +89,8 @@ const StartingPage = () => {
                                 setStep(step + 1)
                             } else {
                                 firebase.firestore().collection('Users').doc(user.id).update({
-                                    localization: new firebase.firestore.GeoPoint(coords.latitude, coords.longitude)
+                                    localization: new firebase.firestore.GeoPoint(coords.latitude, coords.longitude),
+                                    startDate: new Date()
                                 })
 
                                 history.push('/')
