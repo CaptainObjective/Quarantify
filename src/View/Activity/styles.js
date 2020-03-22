@@ -76,5 +76,26 @@ export const styles = {
         background: '#F65C51',
         color: 'white',
         margin: '5px'
+    },
+     modalTitle: {
+        fontSize: '18px',
+         fontWeight: 600,
+         margin: '15px'
+     },
+    modalDropdown: {
+        margin: '10px',
+        display: 'flex',
+    },
+    modalAdd: {
+        margin: '10px',
+        background: '#FFC107',
+        border: '2px solid #FFC107',
+        color: 'white',
+    },
+    modalClose: {
+        margin: '10px',
+        border: '2px solid #FFC107',
+        color: '#FFC107',
+        background: 'transparent'
     }
 }
