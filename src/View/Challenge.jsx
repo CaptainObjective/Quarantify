@@ -7,6 +7,7 @@ import { useAuthorization } from '../hooks/useAuthorization';
 import { urltoFile } from '../Utils';
 import { ChallengeList } from '../Components/ChallengeList/ChallengeList';
 import { completeChallenge } from '../db/completeChallenge';
+import { updateScore } from '../db/updateScore';
 
 const Challenge = () => {
   const [state, setState] = useState('challenge'); //'', 'submit'
@@ -29,12 +30,12 @@ const Challenge = () => {
   };
   const handleSubmit = async (e, o) => {
     e.preventDefault();
-    console.log(photo);
     const file = await urltoFile(photo, Date.now(), 'image/png');
 
     const url = await uploadImage(file, 'Selfies');
     completeChallenge(selectedId, url);
     if (checkbox) createPost(user.id, 'I just completed selfie challenge!', url);
+    updateScore(user, 50);
     setState('challenge');
   };
   if (state === 'takingPhoto') return <div>{<Cam handleTakePhoto={handleTakePhoto} />}</div>;

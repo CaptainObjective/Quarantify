@@ -1,15 +1,21 @@
 import React from 'react';
 import { Image, Header, Segment, Icon } from 'semantic-ui-react';
-
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 import placholderAvatar from '../../assets/images/placholderAvatar.png';
 import { styles } from './styles';
 import { useAuthorization } from '../../hooks/useAuthorization';
 import MyLoader from '../MyLoader/MyLoader';
+import { firestore } from 'firebase';
 
 const AppBar = () => {
   const user = useAuthorization();
-
-  if (!user) {
+  const [value, loadin, error] = useCollectionData(
+    firestore()
+      .collection('Users')
+      .where('email', '==', user?.email || ' ')
+  );
+  console.log(value);
+  if (!user || loadin) {
     return <MyLoader />;
   }
 
@@ -24,7 +30,7 @@ const AppBar = () => {
         <Segment style={styles.segment}>
           <Header size="small">
             <Icon name="star" color="yellow" size="small" />
-            <Header.Content>{user?.score || 0}</Header.Content>
+            <Header.Content>{value[0]?.score || user?.score}</Header.Content>
           </Header>
         </Segment>
       </span>
