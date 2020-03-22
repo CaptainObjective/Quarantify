@@ -1,10 +1,6 @@
-import React from 'react'
-import {styles} from './styles'
+import React from 'react';
+import { styles } from './styles';
 
-const TitleHeader = () => (
-    <div style={styles}>
-        Quarantify
-    </div>
-)
+const TitleHeader = () => <div style={styles}>Quarantify</div>;
 
-export default TitleHeader
+export default TitleHeader;

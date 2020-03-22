@@ -5,9 +5,11 @@ import { Card, Image, Icon } from 'semantic-ui-react';
 import { styles } from './styles';
 import { useAuthorization } from '../../hooks/useAuthorization';
 import { createChallenge } from '../../db/createChallenge';
+import MyLoader from '../MyLoader/MyLoader';
 
 const UserCard = ({ score, username, avatar, place, email }) => {
   const user = useAuthorization();
+  if (!user) return <MyLoader />;
   return (
     <Card
       style={{

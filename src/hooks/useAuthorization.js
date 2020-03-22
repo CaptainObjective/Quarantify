@@ -6,14 +6,13 @@ import { useLocation } from 'react-router';
 export const useAuthorization = () => {
   const [user, setUser] = useState(null);
   const history = useHistory();
-const {pathname} = useLocation()
+  const { pathname } = useLocation();
 
   // console.log({location})
   useEffect(() => {
     const checkAuthorization = async currentUser => {
-      // setUser(currentUser);
       if (pathname.includes('register')) {
-        return
+        return;
       }
 
       if (!currentUser) {
@@ -26,7 +25,7 @@ const {pathname} = useLocation()
         .where('userId', '==', currentUser.uid)
         .get();
 
-      console.log({snapshot})
+      // console.log({snapshot})
       if (snapshot.empty) return;
       const userData = snapshot.docs[0].data();
 
