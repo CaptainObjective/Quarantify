@@ -1,7 +1,7 @@
 import { firestore } from 'firebase';
 
 export const updateScore = async (user, delta) => {
-  const newAmount = user.score + delta;
+  const newAmount = Number(user.score) + Number(delta);
   try {
     const userRef = await firestore()
       .collection('Users')

@@ -14,7 +14,6 @@ const AppBar = () => {
       .collection('Users')
       .where('email', '==', user?.email || ' ')
   );
-  console.log(value);
   if (!user || loadin) {
     return <MyLoader />;
   }
