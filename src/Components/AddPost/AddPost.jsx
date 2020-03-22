@@ -43,7 +43,7 @@ const AddPost = () => {
         <Form onSubmit={handleSubmit} style={styles.form}>
           <Form.TextArea label="Add text" name="text" id="text" value={text} onChange={e => setText(e.target.value)} />
           <Form.Input label="Add Photo" type="file" name="image" id="image">
-            <input type="file" ref={fileRef} />
+            <input type="file" ref={fileRef} accept="image/*" />
           </Form.Input>
           <Form.Button floated="right" color="orange" type="submit">
             Publish

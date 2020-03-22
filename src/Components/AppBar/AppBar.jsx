@@ -1,11 +1,12 @@
 import React from 'react';
-import { Image, Header, Segment, Icon } from 'semantic-ui-react';
+import { Image, Header, Segment, Icon, Modal } from 'semantic-ui-react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import placholderAvatar from '../../assets/images/placholderAvatar.png';
 import { styles } from './styles';
 import { useAuthorization } from '../../hooks/useAuthorization';
 import MyLoader from '../MyLoader/MyLoader';
 import { firestore } from 'firebase';
+import ChangeUserPhoto from '../ChangeUserPhoto/ChangeUserPhoto';
 
 const AppBar = () => {
   const user = useAuthorization();
@@ -14,7 +15,6 @@ const AppBar = () => {
       .collection('Users')
       .where('email', '==', user?.email || ' ')
   );
-  console.log(value);
   if (!user || loadin) {
     return <MyLoader />;
   }
@@ -23,7 +23,17 @@ const AppBar = () => {
     <div fixed="top" style={styles.root}>
       <div>
         <Header as="h2">
-          <Image circular src={user?.avatar || placholderAvatar} /> {user?.username}
+          <Modal
+            trigger={
+              <Image
+                circular
+                src={value[0]?.avatar || user?.avatar || placholderAvatar}
+                style={{ maxWidth: 60, maxHeight: 60 }}
+              />
+            }
+            content={<ChangeUserPhoto />}
+          />
+          {user?.username}
         </Header>
       </div>
       <span position="right" style={{ margin: '10px' }}>
