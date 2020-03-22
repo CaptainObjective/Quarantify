@@ -7,6 +7,7 @@ import {styles} from "./styles";
 import MyMap from "./Map";
 import {useAuthorization} from "../../hooks/useAuthorization";
 import * as firebase from "firebase";
+import EditableMap from "./EditableMap";
 
 const getTexts = user => ({
     1 : {
@@ -32,6 +33,7 @@ const StartingPage = () => {
         lat: null,
         lng: null,
     })
+    const [isSettingManually, setIsSettingManually] = useState(false)
     const history = useHistory()
     const user = useAuthorization()
 
@@ -44,7 +46,7 @@ const StartingPage = () => {
             case 1:
                 return <img src="/mapMarker.png" style={styles.img}/>
             case 2:
-                return <MyMap lat={coords.lat} lng={coords.lng} />
+                return isSettingManually ? <EditableMap coords={coords} setCoords={setCoords} /> : <MyMap lat={coords.lat} lng={coords.lng} />
             case 3:
                 return <img src="/world.png" style={styles.img}/>
         }
@@ -53,14 +55,15 @@ const StartingPage = () => {
     const renderBottomText = () => {
         switch (step) {
             case 1:
-                return <div style={styles.bottomTextStepOne}>Already turned on</div>
-            case 2:
                 return (
                     <div style={styles.bottomTextStepTwo}>
                         <div>
                             Something's wrong?
                         </div>
-                        <div>
+                        <div onClick={() => {
+                            setIsSettingManually(true)
+                            setStep(2)
+                        }}>
                             Set your location manually
                         </div>
                     </div>
@@ -78,7 +81,21 @@ const StartingPage = () => {
                 {renderMainContent()}
             <Button
                 onClick={() => {
-                    if (navigator.geolocation) {
+                    if (isSettingManually) {
+                        if (step < 3) {
+                            setStep(step + 1)
+                        } else {
+                            console.log({coords})
+                            firebase.firestore().collection('Users').doc(user.id).update({
+                                localization: new firebase.firestore.GeoPoint(coords.latitude, coords.longitude),
+                                startDate: new Date()
+                            })
+
+                            history.push('/')
+                        }
+                    }
+
+                    if (navigator.geolocation && !isSettingManually) {
                         navigator.geolocation.getCurrentPosition(({coords}) => {
                             setCoords({
                                 lat: coords.latitude,
@@ -88,6 +105,7 @@ const StartingPage = () => {
                             if (step < 3) {
                                 setStep(step + 1)
                             } else {
+                                console.log({coords})
                                 firebase.firestore().collection('Users').doc(user.id).update({
                                     localization: new firebase.firestore.GeoPoint(coords.latitude, coords.longitude),
                                     startDate: new Date()
