@@ -40,6 +40,7 @@ const Login = () => {
         try {
             await firebase.firestore().collection('Users').doc('k7BillLP8pJmpC3MOvbZ').update({
                 localization: null,
+                lastModalDate: new Date('2000-01-01')
             })
             await firebase.auth().signInWithEmailAndPassword('demo@demo.com', 'demo1234')
         } catch (error) {
